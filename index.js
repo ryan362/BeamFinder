@@ -1,13 +1,22 @@
 const prompt = require('prompt-sync')();
 
-var dead = parseFloat(prompt('Dead Load: ', 60))
-var live = parseFloat(prompt('Live Load: ', 100))
-var length = parseFloat(prompt('Beam Length: ', 20))
-var spacing = parseFloat(prompt('Beam Spacing: '))
+var type = prompt('Type (B: Beam; G: Girder): ', 'B');
+var dead = parseFloat(prompt('Dead Load: ', 60));
+var live = parseFloat(prompt('Live Load: ', 100));
 
-const liveTot = live * spacing
-const weight = (dead * spacing) + liveTot
-const Ra = (weight * length)/2
+var length = parseFloat(prompt('Beam Length: ', 20));
+var weight = 0
+var liveTot = 0
+if (type.toUpperCase() == 'B') {
+	var spacing = parseFloat(prompt('Beam Spacing: '));
+	liveTot = live * spacing;
+	weight = (dead * spacing) + liveTot;
+}else{
+	
+}
+
+
+const Ra = (weight * length)/2;
 //console.log('Ra/Rb = ' + Ra +'lbs')
 const Mmax = (weight * (length**2))/8
 const Mn = 1.67*Mmax
