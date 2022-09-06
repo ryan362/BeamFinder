@@ -1,14 +1,14 @@
 const prompt = require('prompt-sync')();
 
 var type = prompt('Type (B: Beam; G: Girder): ', 'B');
-var dead = parseFloat(prompt('Dead Load: ', 60));
-var live = parseFloat(prompt('Live Load: ', 100));
+var dead = parseFloat(prompt('Dead Load(lbs): ', 60));
+var live = parseFloat(prompt('Live Load(lbs): ', 100));
 
-var length = parseFloat(prompt('Beam Length: ', 20));
+var length = parseFloat(prompt('Beam Length(ft): ', 20));
 var weight = 0
 var liveTot = 0
 if (type.toUpperCase() == 'B') {
-	var spacing = parseFloat(prompt('Beam Spacing: '));
+	var spacing = parseFloat(prompt('Beam Spacing(in): '));
 	liveTot = live * spacing;
 	weight = (dead * spacing) + liveTot;
 }else{
@@ -25,9 +25,9 @@ const Zx = (Mn * 12)/50000
 console.log('Zx = ' + Zx + " in^3")
 console.log('Please choose a beam')
 
-var depth = parseFloat(prompt('Beam Depth: '))
-var thickness = parseFloat(prompt('Web Thickness: '))
-var Ix = parseFloat(prompt('Ix: '))
+var depth = parseFloat(prompt('Beam Depth(in): '))
+var thickness = parseFloat(prompt('Web Thickness(in): '))
+var Ix = parseFloat(prompt('Ix(in^4): '))
 const Vn = 0.6 * 50000 * depth * thickness
 
 if (Vn > (1.5 * Ra)) {
